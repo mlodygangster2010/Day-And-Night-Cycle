@@ -1,0 +1,29 @@
+------------- Settings
+local Speed =  1000 -- Second
+local DayDuration = 12 -- Minute
+local NightDuration = 10 -- Minute
+------------- Settings
+
+local Lighting = game.Lighting
+local TweenService = game:GetService("TweenService")
+
+function day()
+	TweenService:Create(Lighting, TweenInfo.new(Speed), {ClockTime = 12}):Play()
+	TweenService:Create(Lighting, TweenInfo.new(Speed), {Brightness = 3.05}):Play()
+	TweenService:Create(Lighting, TweenInfo.new(Speed), {Ambient = Color3.fromRGB(106, 130, 186)}):Play()
+	TweenService:Create(Lighting, TweenInfo.new(Speed), {ColorShift_Bottom = Color3.fromRGB(0,0,0)}):Play()
+end
+
+function night()
+	TweenService:Create(Lighting, TweenInfo.new(Speed), {ClockTime = 0}):Play()
+	TweenService:Create(Lighting, TweenInfo.new(Speed), {Brightness = 0.4}):Play()
+	TweenService:Create(Lighting, TweenInfo.new(Speed), {Ambient = Color3.fromRGB(0,0,0)}):Play()
+	TweenService:Create(Lighting, TweenInfo.new(Speed), {ColorShift_Bottom = Color3.fromRGB(0,0,0)}):Play()
+end
+
+while true do
+	day()
+	wait(DayDuration60)
+	night()
+	wait(NightDuration60)
+end
